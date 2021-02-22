@@ -3,10 +3,17 @@
 int main(void)
 {
     char id_number[20];
-    int place_value = 0, even = 0, odd = 0, person_number;
-    printf("Enter the personal identification number (person_number) in YYMMDD-NNNC format : ");
-    scanf("%d", &person_number);
-    sprintf(id_number, "%d", person_number);
+    int place_value = 0, even = 0, odd = 0;
+    long personal_number, check_digit;
+    long person_number;
+    printf("Enter the personal identification number (person_number) in YYMMDDNNNC format : ");
+    scanf("%ld", &personal_number);
+    person_number = personal_number / 10;
+    check_digit = personal_number % 10;
+    printf("%ld\n", check_digit);
+    printf("%ld", person_number);
+    /*
+    sprintf(id_number, "%ld", &person_number);
     while (id_number[place_value] != '\0')
     {
         if (place_value % 2 == 0)
@@ -40,7 +47,12 @@ int main(void)
     }
     int final_value = even + odd;
     int control_digit = (10 - (final_value % 10)) % 10;
-    printf("%d\n", control_digit);
-
+    if (control_digit == (personal_number % 10))
+    {
+        printf("The entered Personnummer is valid");
+    }
+    else
+        printf("The entered Personnummer is invalid");
+*/
     return 0;
 }
