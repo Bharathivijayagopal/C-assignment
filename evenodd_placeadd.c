@@ -14,6 +14,7 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #define FORMAT "YYMMDD-nnnC"
@@ -24,15 +25,12 @@ int main(void)
     char string[sizeof(FORMAT) + 1] = {0};
     int place_value = 0, even = 0, odd = 0, check_digit;
     unsigned long long int updated_person_number, person_number;
-
     // Get input "Personnummer" from user  in specific format
 
     printf("Enter Personnummer in the format of %s: ", FORMAT);
     fgets(string, sizeof(FORMAT) + 1, stdin);
     string[strlen(string) - 1] = '\0';
-
     // validate the entered number is in correct format or not before performing luhn computation :
-
     int i = 0;
     bool is_correct = true;
 
@@ -119,15 +117,15 @@ int main(void)
             }
             place_value++;
         }
-        // check the computation works properly with even and odd values
+        // check the checksum computation works properly with even and odd values to verify the working of algorithm
 
-        printf("sum of odd places=  %d\n", odd);
-        printf(" sum of even places=  %d\n", even);
+        // printf("sum of odd places=  %d\n", odd);
+        //printf(" sum of even places=  %d\n", even);
         int final_value = even + odd;
 
         // validating the personnnummer
         int control_digit = (10 - (final_value % 10)) % 10; //calculate the control digit which is checked with the entered number's check digit.
-        printf("check digit is %d\n", control_digit);
+                                                            // printf("check digit is %d\n", control_digit);
 
         if (control_digit == check_digit)
         {
